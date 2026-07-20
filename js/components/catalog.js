@@ -1,5 +1,5 @@
 // Catalog and Budget Cart Component functionality
-import { products, getSlug, getProductSizesList } from '../data/products.js';
+import { products, getSlug, getProductSizesList, getBasename } from '../data/products.js';
 
 export function initCatalog(whatsappNumber) {
   // Initialize and Sanitize Cart State from LocalStorage (Backward Compatibility)
@@ -54,15 +54,17 @@ export function initCatalog(whatsappNumber) {
       
       const badgeHtml = product.tag ? `<div class="product-badge">${product.tag}</div>` : '';
       const slug = getSlug(product.name);
+      const base = getBasename();
+      const productUrl = `${base}/${slug}`;
 
       card.innerHTML = `
-        <a href="/${slug}" class="product-img-wrapper" aria-label="Ver detalles de ${product.name}">
+        <a href="${productUrl}" class="product-img-wrapper" aria-label="Ver detalles de ${product.name}">
           ${badgeHtml}
           <img src="${product.img}" alt="${product.name}" loading="lazy">
         </a>
         <div class="product-info">
           <h3 class="product-title">
-            <a href="/${slug}" style="text-decoration:none; color:inherit;">${product.name}</a>
+            <a href="${productUrl}" style="text-decoration:none; color:inherit;">${product.name}</a>
           </h3>
           <p class="product-desc">${product.desc}</p>
           <div class="product-bottom-home">
@@ -70,7 +72,7 @@ export function initCatalog(whatsappNumber) {
               ${product.price}
               <span>${product.price.startsWith('$') ? 'c/u' : 'consultar'}</span>
             </div>
-            <a href="/${slug}" class="product-btn-detail">Ver detalle</a>
+            <a href="${productUrl}" class="product-btn-detail">Ver detalle</a>
           </div>
         </div>
       `;

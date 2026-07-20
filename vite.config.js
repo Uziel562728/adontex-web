@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  base: '/adontex-web/',
   // Vite dev and preview servers config for Single Page Application SPA routing fallback
   server: {
     port: 5173,

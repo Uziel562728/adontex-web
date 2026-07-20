@@ -1,5 +1,5 @@
 // SPA Client-Side Router Component - Sizing Selector, Form Requests and Inline Validations
-import { products, getSlug, getProductSizesList } from '../data/products.js';
+import { products, getSlug, getProductSizesList, getBasename } from '../data/products.js';
 
 export function initRouter() {
   const homeView = document.getElementById('home-view');
@@ -10,7 +10,14 @@ export function initRouter() {
   // Handle URL change
   function handleRoute() {
     const path = window.location.pathname;
-    const cleanPath = path.replace(/^\/|\/$/g, '');
+    const basename = getBasename();
+    
+    // Remove basename from the path if it starts with it
+    let cleanPath = path;
+    if (basename && cleanPath.startsWith(basename)) {
+      cleanPath = cleanPath.slice(basename.length);
+    }
+    cleanPath = cleanPath.replace(/^\/|\/$/g, '');
 
     if (cleanPath === '' || cleanPath === 'index.html') {
       // 1. Home Page View
@@ -134,7 +141,7 @@ export function initRouter() {
     routerView.innerHTML = `
       <section class="product-detail-section animate-fade-in">
         <div class="container">
-          <a href="/#catalogo" class="back-link"><i class="fas fa-arrow-left"></i> Volver al catálogo</a>
+          <a href="${getBasename()}/#catalogo" class="back-link"><i class="fas fa-arrow-left"></i> Volver al catálogo</a>
           
           <div class="product-detail-container">
             <div class="product-detail-media">
@@ -364,7 +371,7 @@ export function initRouter() {
     routerView.innerHTML = `
       <section class="budget-form-section animate-fade-in">
         <div class="container">
-          <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Volver</a>
+          <a href="${getBasename() || '/'}" class="back-link"><i class="fas fa-arrow-left"></i> Volver</a>
           
           <div class="budget-form-container">
             <h1>Solicitar Presupuesto de Estampado</h1>
@@ -502,7 +509,7 @@ export function initRouter() {
             <i class="fas fa-exclamation-triangle"></i>
             <h1>Producto no encontrado</h1>
             <p>Lo sentimos, la prenda que estás buscando no existe o fue dada de baja de nuestro catálogo.</p>
-            <a href="/#catalogo" class="btn btn-primary"><i class="fas fa-home"></i> Volver al catálogo</a>
+            <a href="${getBasename()}/#catalogo" class="btn btn-primary"><i class="fas fa-home"></i> Volver al catálogo</a>
           </div>
         </div>
       </section>
@@ -527,7 +534,7 @@ export function initRouter() {
     const anchor = e.target.closest('a');
     if (!anchor) return;
 
-    const href = anchor.getAttribute('href');
+    let href = anchor.getAttribute('href');
     if (!href) return;
 
     if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:') || anchor.hasAttribute('target')) {
@@ -540,21 +547,33 @@ export function initRouter() {
 
     e.preventDefault();
 
+    const basename = getBasename();
+    const pathname = window.location.pathname;
+    const isAtHome = (pathname === '/' || 
+                      pathname === '/index.html' || 
+                      pathname === basename || 
+                      pathname === basename + '/' || 
+                      pathname === basename + '/index.html');
+
     if (href.startsWith('#') || href.startsWith('/#')) {
       const cleanHash = href.replace(/^\/#/, '#');
       
-      if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
-        history.pushState(null, '', '/' + cleanHash);
+      if (!isAtHome) {
+        history.pushState(null, '', (basename || '') + '/' + cleanHash);
         handleRoute();
       } else {
         const target = document.querySelector(cleanHash);
         if (target) {
           target.scrollIntoView({ behavior: 'smooth' });
         }
-        history.pushState(null, '', cleanHash);
+        history.pushState(null, '', (basename || '') + '/' + cleanHash);
       }
     } else {
-      history.pushState(null, '', href);
+      let targetUrl = href;
+      if (basename && !targetUrl.startsWith(basename)) {
+        targetUrl = basename + (targetUrl.startsWith('/') ? '' : '/') + targetUrl;
+      }
+      history.pushState(null, '', targetUrl);
       handleRoute();
     }
   });

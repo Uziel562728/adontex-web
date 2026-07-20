@@ -6,7 +6,7 @@ export const products = [
     category: "remeras",
     price: "$12.500",
     desc: "Remera azul marino de corte regular, confeccionada en algodón peinado premium. Presenta un estampado geométrico minimalista en el pecho con tintas elásticas de alta durabilidad.",
-    img: "assets/images/remera_navy_classic.jpg",
+    img: new URL('../../assets/images/remera_navy_classic.jpg', import.meta.url).href,
     tag: "Más Vendido",
     sizes: "S, M, L, XL, XXL",
     colors: "Azul Marino, Negro",
@@ -19,7 +19,7 @@ export const products = [
     category: "remeras",
     price: "$12.500",
     desc: "Remera blanca clásica de calce moderno. Confeccionada con algodón de tacto suave y fresco, luciendo una estampa abstracta de diseño propio en colores azules y celestes.",
-    img: "assets/images/remera_urban_white.jpg",
+    img: new URL('../../assets/images/remera_urban_white.jpg', import.meta.url).href,
     tag: "Nueva Temporada",
     sizes: "S, M, L, XL, XXL, XXXL",
     colors: "Blanco, Gris Claro",
@@ -32,7 +32,7 @@ export const products = [
     category: "remeras",
     price: "$13.200",
     desc: "Remera negra de corte street premium. Algodón pesado de excelente caída, con estampado de tecnología DTF digital en alta definición de estética neon-cyberpunk.",
-    img: "assets/images/remera_street_black.jpg",
+    img: new URL('../../assets/images/remera_street_black.jpg', import.meta.url).href,
     tag: "Diseño Exclusivo",
     sizes: "M, L, XL, XXL",
     colors: "Negro",
@@ -45,7 +45,7 @@ export const products = [
     category: "estampados",
     price: "$12.800",
     desc: "Remera gris melange de confección premium. Ideal para remeras promocionales o institucionales de alta gama con estampado de logo corporativo en tintas especiales.",
-    img: "assets/images/remera_custom_grey.jpg",
+    img: new URL('../../assets/images/remera_custom_grey.jpg', import.meta.url).href,
     tag: "Destacado",
     sizes: "S, M, L, XL, XXL",
     colors: "Gris Melange, Negro, Marino",
@@ -58,7 +58,7 @@ export const products = [
     category: "estampados",
     price: "Consultar",
     desc: "Servicio de confección y estampado textil por cantidad. Ideal para marcas de indumentaria, uniformes de empresas o eventos. Aplicamos serigrafía, DTF y vinilos especiales.",
-    img: "assets/images/finished_products.jpg",
+    img: new URL('../../assets/images/finished_products.jpg', import.meta.url).href,
     tag: "Por Mayor",
     sizes: "Personalizado",
     colors: "Variedad a elección",
@@ -71,7 +71,7 @@ export const products = [
     category: "estampados",
     price: "Consultar",
     desc: "Remeras y buzos de egresados personalizados. Diseños únicos a color completo creados a pedido para colegios y promociones escolares. Alta resistencia y costuras reforzadas.",
-    img: "assets/images/tshirt_mockups.jpg",
+    img: new URL('../../assets/images/tshirt_mockups.jpg', import.meta.url).href,
     tag: "Promo Escolar",
     sizes: "Surtido Completo",
     colors: "Diseño multicolor",
@@ -79,6 +79,11 @@ export const products = [
     care: "Lavar con agua fría, jabón suave. Planchar a temperatura baja."
   }
 ];
+
+// Helper to get active basename dynamically based on environment
+export function getBasename() {
+  return window.location.pathname.startsWith('/adontex-web') ? '/adontex-web' : '';
+}
 
 // Helper to generate clean URL slug based on product name
 export function getSlug(name) {
