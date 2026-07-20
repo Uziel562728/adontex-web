@@ -192,6 +192,10 @@ header .nav-container {
 
 /* Responsive Menu styles for Mobile */
 @media (max-width: 768px) {
+  header {
+    z-index: 1100;
+  }
+
   .burger-menu {
     display: flex;
   }
