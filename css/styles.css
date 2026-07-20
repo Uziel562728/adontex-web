@@ -1,0 +1,147 @@
+/* Main Stylesheet Entrypoint */
+
+/* Import Component Styles */
+@import url('variables.css');
+@import url('header.css');
+@import url('carousel.css');
+@import url('presentation.css');
+@import url('catalog.css');
+@import url('cart.css');
+@import url('printing.css');
+@import url('footer.css');
+@import url('whatsapp.css');
+@import url('animations.css');
+
+/* CSS Resets & Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-height); /* Keep smooth scroll aligned with header height */
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Prevent accidental horizontal scroll */
+  width: 100%;
+}
+
+/* Typography styles */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-white);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* Background Glow Effects */
+.bg-glow-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background-color: var(--bg-body);
+  pointer-events: none;
+}
+
+.bg-glow-bubble {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.12; /* Delicate contrast */
+  will-change: transform;
+}
+
+.bubble-1 {
+  top: -10%;
+  left: 10%;
+  width: 450px;
+  height: 450px;
+  background-color: var(--cyan-accent);
+  animation: float-bubble-1 25s infinite alternate ease-in-out;
+}
+
+.bubble-2 {
+  bottom: 20%;
+  right: -5%;
+  width: 500px;
+  height: 500px;
+  background-color: var(--secondary-blue);
+  animation: float-bubble-2 30s infinite alternate ease-in-out;
+}
+
+.bubble-3 {
+  top: 40%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background-color: var(--primary-blue);
+  animation: float-bubble-3 28s infinite alternate ease-in-out;
+}
+
+@keyframes float-bubble-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(80px, 60px) scale(1.1); }
+  100% { transform: translate(-40px, 120px) scale(0.95); }
+}
+
+@keyframes float-bubble-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-100px, -80px) scale(0.9); }
+  100% { transform: translate(60px, 40px) scale(1.15); }
+}
+
+@keyframes float-bubble-3 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(70px, -50px) scale(1.2); }
+  100% { transform: translate(-60px, 80px) scale(0.85); }
+}
+
+
+/* Utility Containers */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Section Common Titles */
+.section-tagline {
+  color: var(--cyan-accent);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+  text-align: center;
+  display: block;
+}
+
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--primary-blue);
+  color: var(--text-white);
+  padding: 8px;
+  z-index: 100;
+  transition: top 0.2s;
+}
+
+.skip-link:focus {
+  top: 0;
+}

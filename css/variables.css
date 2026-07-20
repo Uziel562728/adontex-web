@@ -1,0 +1,55 @@
+/* Base Variables and Design System - Premium Dark Navy Theme */
+:root {
+  /* Color Palette - Premium Blue & Cyan Identity */
+  --bg-body: #071426;            /* Deep dark blue general body background */
+  --bg-card: #0b1e36;            /* Rich dark navy for cards and widgets */
+  --bg-card-hover: #112846;      /* Slightly lighter navy for hover state cards */
+  --bg-nav: rgba(7, 20, 38, 0.85);/* Semi-transparent navbar background */
+  
+  --primary-dark: #020617;       /* Extra dark color for buttons and titles */
+  --primary-blue: #1e40af;       /* Royal Blue */
+  --primary-blue-rgb: 30, 64, 175;
+  --secondary-blue: #3b82f6;     /* Bright Blue */
+  --light-blue: #0e2a4a;         /* Dark blue tint for sections / layouts */
+  
+  --cyan-accent: #00f0ff;        /* Neon electric Cyan for accents & labels */
+  --cyan-accent-hover: #38bdf8;  /* Sky blue for accents hover */
+  
+  /* Text Colors */
+  --text-main: #cbd5e1;          /* Slate 300 - high contrast readable body text */
+  --text-muted: #94a3b8;         /* Slate 400 - description subtexts */
+  --text-light: #64748b;         /* Slate 500 */
+  --text-white: #ffffff;         /* Pure white for headings */
+  
+  /* Decorative & Status */
+  --whatsapp-green: #25d366;     /* WhatsApp branding color */
+  --whatsapp-green-hover: #128c7e;
+  --border-color: rgba(255, 255, 255, 0.08);       /* Subtle border line */
+  --border-color-hover: rgba(0, 240, 255, 0.3);    /* Glowing cyan border for hovers */
+  
+  /* Typography */
+  --font-display: 'Outfit', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Rounded Corners - Professional, not exaggerated */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 9999px;
+  
+  /* Shadow Levels - Soft and realistic */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.55);
+  --shadow-glow: 0 0 20px rgba(0, 240, 255, 0.25);
+  --shadow-whatsapp: 0 8px 24px rgba(37, 211, 102, 0.3);
+  
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1); /* Faster response */
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Layout constraints */
+  --container-width: 1200px;
+  --header-height: 70px;
+}

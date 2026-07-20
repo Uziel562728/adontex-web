@@ -1,0 +1,173 @@
+/* Carousel Gallery Styles - Dark Theme Optimized */
+.carousel-section {
+  padding-top: calc(var(--header-height) + 20px); /* Account for sticky header */
+  padding-bottom: 24px;
+  background-color: var(--bg-body);
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-section .section-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 0 24px;
+}
+
+.carousel-section .section-title {
+  font-family: var(--font-display);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--cyan-accent);
+  margin-bottom: 6px;
+  font-weight: 700;
+  text-shadow: var(--shadow-glow);
+}
+
+.carousel-section .section-subtitle {
+  font-family: var(--font-body);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-white);
+}
+
+.carousel-viewport {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  cursor: grab;
+  padding: 15px 0 25px 0;
+  display: flex;
+}
+
+.carousel-viewport::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.carousel-viewport:active {
+  cursor: grabbing;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 24px;
+  padding-left: max(24px, calc((100vw - var(--container-width)) / 2));
+  padding-right: max(24px, calc((100vw - var(--container-width)) / 2));
+}
+
+.carousel-item {
+  position: relative;
+  flex: 0 0 320px; /* Width on desktop */
+  height: 220px; /* Modern height */
+  border-radius: var(--radius-md);
+  overflow: hidden; /* Crops image and zoom effect properly */
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  transition: transform 0.22s cubic-bezier(0.25, 1, 0.5, 1), 
+              box-shadow 0.22s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.22s cubic-bezier(0.25, 1, 0.5, 1);
+  user-select: none;
+  -webkit-user-drag: none;
+  background-color: var(--bg-card);
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform var(--transition-slow);
+}
+
+/* Elevate, scale, glow and change border color immediately on hover */
+.carousel-item:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 240, 255, 0.22), var(--shadow-lg);
+  border-color: var(--cyan-accent);
+  z-index: 10;
+}
+
+.carousel-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Glassmorphic tags on carousel images */
+.carousel-tag {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+  background-color: rgba(7, 20, 38, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--text-white);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  pointer-events: none; /* Make sure drag works even clicking tag */
+}
+
+.carousel-tag span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: var(--cyan-accent);
+  border-radius: var(--radius-full);
+  margin-right: 6px;
+  vertical-align: middle;
+  box-shadow: var(--shadow-glow);
+}
+
+/* Mobile specific styling */
+@media (max-width: 768px) {
+  .carousel-section {
+    padding-top: calc(var(--header-height) + 12px);
+    padding-bottom: 12px;
+  }
+  
+  .carousel-section .section-header {
+    margin-bottom: 12px;
+  }
+  
+  .carousel-section .section-subtitle {
+    font-size: 18px;
+  }
+  
+  .carousel-viewport {
+    padding: 6px 0 16px 0;
+  }
+  
+  .carousel-track {
+    gap: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .carousel-item {
+    flex: 0 0 250px;
+    height: 170px;
+  }
+  
+  .carousel-item:hover {
+    transform: none; /* Disable translates on mobile touch to avoid layout shifts */
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-color);
+  }
+  
+  .carousel-tag {
+    bottom: 10px;
+    left: 10px;
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+}

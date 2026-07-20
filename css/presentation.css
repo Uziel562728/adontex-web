@@ -1,0 +1,245 @@
+/* Brand Presentation Hero Section - Dark Theme Optimized */
+.presentation-section {
+  padding: 80px 24px;
+  background: transparent; /* Seamless blend with ambient glowing background */
+  position: relative;
+  overflow: hidden;
+}
+
+.presentation-container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.presentation-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--light-blue);
+  color: var(--cyan-accent);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border: 1px solid rgba(0, 240, 255, 0.15);
+}
+
+.brand-badge span {
+  width: 8px;
+  height: 8px;
+  background-color: var(--cyan-accent);
+  border-radius: 50%;
+  animation: pulse-dot 2s infinite;
+  box-shadow: var(--shadow-glow);
+}
+
+.presentation-title {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--text-white);
+  margin: 0 0 20px 0;
+}
+
+.presentation-title span {
+  background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--cyan-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.presentation-text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0 0 32px 0;
+  max-width: 580px;
+}
+
+.presentation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Call to Action Buttons & Micro-animations */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast) ease-out; /* Super responsive fast transition */
+  cursor: pointer;
+  border: none;
+}
+
+.btn:active {
+  transform: scale(0.96) !important; /* Immediate click feedback click shrink */
+}
+
+.btn-primary {
+  background-color: var(--primary-blue);
+  color: var(--text-white);
+  box-shadow: 0 4px 14px rgba(30, 64, 175, 0.2);
+}
+
+.btn-primary:hover {
+  background-color: var(--cyan-accent);
+  color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-whatsapp-outline {
+  background-color: transparent;
+  color: var(--whatsapp-green);
+  border: 2px solid var(--whatsapp-green);
+}
+
+.btn-whatsapp-outline:hover {
+  background-color: var(--whatsapp-green);
+  color: var(--text-white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-whatsapp);
+}
+
+/* Presentation Highlights (Right Column Grid) */
+.presentation-highlights {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.highlight-card {
+  background-color: var(--bg-card);
+  padding: 24px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-fast) ease-out;
+}
+
+.highlight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-color-hover);
+}
+
+.highlight-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  background-color: var(--light-blue);
+  color: var(--cyan-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 16px;
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-card:hover .highlight-icon {
+  background-color: var(--cyan-accent);
+  color: var(--primary-dark);
+  box-shadow: var(--shadow-glow);
+}
+
+.highlight-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 8px;
+}
+
+.highlight-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+/* Pulse animation for badge dot */
+@keyframes pulse-dot {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.5);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(0, 240, 255, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 240, 255, 0);
+  }
+}
+
+/* Responsive Presentation */
+@media (max-width: 992px) {
+  .presentation-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .presentation-title {
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 576px) {
+  .presentation-section {
+    padding: 48px 16px;
+  }
+  
+  .presentation-title {
+    font-size: 28px;
+  }
+  
+  .presentation-text {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  
+  .presentation-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+  
+  .presentation-highlights {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .highlight-card {
+    padding: 18px;
+  }
+}
