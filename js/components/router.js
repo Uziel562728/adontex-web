@@ -12,19 +12,10 @@ export function initRouter() {
     const path = window.location.pathname;
     const basename = getBasename();
     
-    // Remove basename from the path if it starts with it
-    let cleanPath = path;
-    if (basename && cleanPath.startsWith(basename)) {
-      cleanPath = cleanPath.slice(basename.length);
-    }
-    cleanPath = cleanPath.replace(/^\/|\/$/g, '');
+    // Explicit regex check for the home page (with or without basename, trailing slashes, or index.html)
+    const isHome = /^\/(adontex-web\/?)?(index\.html)?$/i.test(path) || path === '/' || path === '/index.html';
 
-    console.log('[DEBUG Router] path:', path);
-    console.log('[DEBUG Router] basename:', basename);
-    console.log('[DEBUG Router] cleanPath:', cleanPath);
-    console.log('[DEBUG Router] location.href:', window.location.href);
-
-    if (cleanPath === '' || cleanPath === 'index.html') {
+    if (isHome) {
       // 1. Home Page View
       routerView.style.display = 'none';
       homeView.style.display = 'block';
@@ -40,32 +31,41 @@ export function initRouter() {
           }, 100);
         }
       }
-    } else if (cleanPath === 'solicitar-presupuesto') {
-      // 2. Custom Printing Budget Request Form Route
-      routerView.innerHTML = '';
-      homeView.style.display = 'none';
-      routerView.style.display = 'block';
-      
-      renderBudgetForm();
-      updateNavHighlight('none');
-      window.scrollTo({ top: 0, behavior: 'instant' });
     } else {
-      // 3. Product Page or 404 View
-      const product = products.find(p => getSlug(p.name) === cleanPath);
-      
-      routerView.innerHTML = '';
-      homeView.style.display = 'none';
-      routerView.style.display = 'block';
-      
-      if (product) {
-        renderProductDetail(product);
-        updateNavHighlight('catalog');
-      } else {
-        renderNotFound();
-        updateNavHighlight('none');
+      // Clean path to find sub-routes
+      let cleanPath = path;
+      if (basename && cleanPath.startsWith(basename)) {
+        cleanPath = cleanPath.slice(basename.length);
       }
-      
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      cleanPath = cleanPath.replace(/^\/|\/$/g, '');
+
+      if (cleanPath === 'solicitar-presupuesto') {
+        // 2. Custom Printing Budget Request Form Route
+        routerView.innerHTML = '';
+        homeView.style.display = 'none';
+        routerView.style.display = 'block';
+        
+        renderBudgetForm();
+        updateNavHighlight('none');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      } else {
+        // 3. Product Page or 404 View
+        const product = products.find(p => getSlug(p.name) === cleanPath);
+        
+        routerView.innerHTML = '';
+        homeView.style.display = 'none';
+        routerView.style.display = 'block';
+        
+        if (product) {
+          renderProductDetail(product);
+          updateNavHighlight('catalog');
+        } else {
+          renderNotFound();
+          updateNavHighlight('none');
+        }
+        
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
     }
   }
 

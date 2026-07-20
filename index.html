@@ -13,8 +13,9 @@
           return r;
         }, {});
         if (decoded.p !== undefined) {
+          var cleanPathname = l.pathname.endsWith('/') ? l.pathname.slice(0, -1) : l.pathname;
           window.history.replaceState(null, null,
-            l.pathname.slice(0, -1) + (decoded.p ? '/' + decoded.p : '') +
+            cleanPathname + (decoded.p ? '/' + decoded.p : '') +
             (decoded.q ? ('?' + decoded.q) : '') +
             l.hash
           );
