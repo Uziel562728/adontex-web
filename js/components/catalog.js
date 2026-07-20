@@ -498,35 +498,52 @@ export function initCatalog(whatsappNumber) {
   }
 
   // Drawer Toggle Handlers
-  function openCartDrawer() {
+  function openCartDrawer(isPopstate = false) {
     cartDrawer.classList.add('open');
     cartBackdrop.classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    // Push dummy state to browser history if this isn't triggered by popstate
+    if (!isPopstate) {
+      window.history.pushState({ cartOpen: true }, '');
+    }
   }
 
-  function closeCartDrawer() {
+  function closeCartDrawer(isPopstate = false) {
     cartDrawer.classList.remove('open');
     cartBackdrop.classList.remove('open');
     document.body.style.overflow = '';
+
+    // If closed manually and dummy state is active in history, go back to clear it
+    if (!isPopstate && window.history.state?.cartOpen === true) {
+      window.history.back();
+    }
   }
 
   if (cartToggle) {
-    cartToggle.addEventListener('click', openCartDrawer);
+    cartToggle.addEventListener('click', () => openCartDrawer(false));
   }
   if (cartClose) {
-    cartClose.addEventListener('click', closeCartDrawer);
+    cartClose.addEventListener('click', () => closeCartDrawer(false));
   }
   if (cartBackdrop) {
-    cartBackdrop.addEventListener('click', closeCartDrawer);
+    cartBackdrop.addEventListener('click', () => closeCartDrawer(false));
   }
   if (cartBackToShop) {
-    cartBackToShop.addEventListener('click', closeCartDrawer);
+    cartBackToShop.addEventListener('click', () => closeCartDrawer(false));
   }
+
+  // Handle browser back button (popstate) to close the cart drawer
+  window.addEventListener('popstate', (e) => {
+    if (cartDrawer.classList.contains('open') && (!e.state || e.state.cartOpen !== true)) {
+      closeCartDrawer(true);
+    }
+  });
 
   // Close with Escape key (PC)
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && cartDrawer.classList.contains('open')) {
-      closeCartDrawer();
+      closeCartDrawer(false);
     }
   });
 
