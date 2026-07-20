@@ -82,7 +82,9 @@ export const products = [
 
 // Helper to get active basename dynamically based on environment
 export function getBasename() {
-  return window.location.pathname.startsWith('/adontex-web') ? '/adontex-web' : '';
+  const path = window.location.pathname;
+  const match = path.match(/^\/adontex-web/i);
+  return match ? match[0] : '';
 }
 
 // Helper to generate clean URL slug based on product name

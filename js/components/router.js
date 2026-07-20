@@ -19,6 +19,11 @@ export function initRouter() {
     }
     cleanPath = cleanPath.replace(/^\/|\/$/g, '');
 
+    console.log('[DEBUG Router] path:', path);
+    console.log('[DEBUG Router] basename:', basename);
+    console.log('[DEBUG Router] cleanPath:', cleanPath);
+    console.log('[DEBUG Router] location.href:', window.location.href);
+
     if (cleanPath === '' || cleanPath === 'index.html') {
       // 1. Home Page View
       routerView.style.display = 'none';
