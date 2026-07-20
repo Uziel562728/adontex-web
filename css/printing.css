@@ -164,12 +164,29 @@
   }
   
   .printing-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
   }
   
   .service-card {
-    padding: 20px;
+    padding: 12px;
+  }
+  
+  .service-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  
+  .service-title {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  
+  .service-desc {
+    font-size: 11px;
+    line-height: 1.35;
   }
   
   .btn-printing-cta {

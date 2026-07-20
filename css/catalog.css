@@ -425,6 +425,18 @@
     margin-left: 2px;
   }
 
+  .product-bottom-home {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .product-btn-detail {
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
   .product-sizes-label {
     font-size: 9px;
     padding: 1px 4px;
